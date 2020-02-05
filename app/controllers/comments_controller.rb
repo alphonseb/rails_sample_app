@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @product = Product.find(params[:product_id])
+    @comments = @product.comments
   end
 
   # GET /comments/1
@@ -14,24 +15,24 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+    @product = Product.find(params[:product_id])
     @comment = Comment.new
-    if (params[:product_id]) 
-        @comment.product_id = params[:product_id]
-    end
   end
 
   # GET /comments/1/edit
   def edit
+    @product = Product.find(params[:product_id])
   end
 
   # POST /comments
   # POST /comments.json
   def create
+    @product = Product.find(params[:product_id])
     @comment = Comment.new(comment_params)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to product_comment_path(@product, @comment), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -43,9 +44,10 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    @product = Product.find(params[:product_id])
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to product_comment_path(@product, @comment), notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }

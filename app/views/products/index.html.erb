@@ -3,7 +3,7 @@
     <%- @products.each do |product| %>
         <li>
            <%= product.title %> - <%= pluralize(product.comments.count, 'commentaire') %>
-           <%= link_to 'Show', product %></td>
+           <%= link_to 'Show', product %>
         </li>
     <% end %>
 </ul>

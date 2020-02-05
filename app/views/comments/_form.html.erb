@@ -1,4 +1,4 @@
-<%= form_with(model: comment, url: url, local: true) do |form| %>
+<%= form_with(scope: comment, url: product_comments_path(product_id: @product.id), local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -14,12 +14,6 @@
   <div class="field">
     <%= form.label :body %>
     <%= form.text_area :body, id: :comment_body %>
-  </div>
-
-  
-  <div class="field">
-    <%= form.label :product_id %>
-    <%= form.number_field :product_id, id: :comment_product_id %>
   </div>
   <div class="actions">
     <%= form.submit %>

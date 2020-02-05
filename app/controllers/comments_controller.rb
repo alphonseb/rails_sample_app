@@ -29,6 +29,7 @@ class CommentsController < ApplicationController
   def create
     @product = Product.find(params[:product_id])
     @comment = Comment.new(comment_params)
+    @comment.product_id = @product.id
 
     respond_to do |format|
       if @comment.save

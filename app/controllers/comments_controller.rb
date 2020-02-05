@@ -15,6 +15,9 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+    if (params[:product_id]) 
+        @comment.product_id = params[:product_id]
+    end
   end
 
   # GET /comments/1/edit

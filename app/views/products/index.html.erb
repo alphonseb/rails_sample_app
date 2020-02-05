@@ -1,6 +1,9 @@
 <ul>
     <%= paginate @products %>
     <%- @products.each do |product| %>
-        <li><%= product.title %></li>
+        <li>
+           <%= product.title %> - <%= pluralize(product.comments.count, 'commentaire') %>
+           <%= link_to 'Show', product %></td>
+        </li>
     <% end %>
 </ul>

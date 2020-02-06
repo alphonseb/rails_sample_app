@@ -18,7 +18,7 @@
 <ul>
     <%- @product.comments.each do |comment| %>
         <li>
-           <%= comment.body %>
+           <%= comment.body %> par <%= link_to(User.find(comment.user_id).email, user_path(comment.user_id)) %>
         </li>
     <% end %>
 </ul>

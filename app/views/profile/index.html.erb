@@ -1,0 +1,12 @@
+<h1> Mon profil </h1>
+<h2> <%= @user.email %> </h2>
+
+<h3> Mes commentaires </h3>
+
+<ul>
+    <%- @comments.each do |comment| %>
+        <li>
+           <%= comment.body %> sur <%= link_to("produit #{comment.product_id}", product_path(comment.product_id)) %>
+        </li>
+    <% end %>
+</ul>

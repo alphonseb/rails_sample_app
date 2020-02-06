@@ -30,6 +30,9 @@ class CommentsController < ApplicationController
     @product = Product.find(params[:product_id])
     @comment = Comment.new(comment_params)
     @comment.product_id = @product.id
+    if user_signed_in?
+        @comment.user_id = current_user.id
+    end
 
     respond_to do |format|
       if @comment.save

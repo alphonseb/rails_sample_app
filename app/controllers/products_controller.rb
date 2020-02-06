@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
      before_action :set_product, only: [:show]
+     before_action :authenticate_user!
 
     def index
         @products = Product.page(params[:page]).per(10).order(:title)

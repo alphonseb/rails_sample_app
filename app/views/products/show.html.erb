@@ -23,4 +23,24 @@
     <% end %>
 </ul>
 
+<h2> Categories </h2>
+
+<ul>
+    <%- @product.categories.each do |category| %>
+        <li>
+           <%= link_to(category.title, category) %>
+        </li>
+    <% end %>
+</ul>
+
+<h2> Commentaires </h2>
+
+<ul>
+    <%- @product.comments.each do |comment| %>
+        <li>
+           <%= comment.body %> par <%= link_to(User.find(comment.user_id).email, user_path(comment.user_id)) %>
+        </li>
+    <% end %>
+</ul>
+
 <%= link_to 'New Comment', new_product_comment_path(:product_id => @product.id) %>

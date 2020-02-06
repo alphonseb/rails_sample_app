@@ -5,4 +5,7 @@ class Product < ApplicationRecord
     paginates_per 5
 
     has_many :comments
+    has_and_belongs_to_many :categories
+
+    scope :in_category, ->(category_id) { Category.find(category_id).products }
 end

@@ -5,6 +5,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
         <% if user_signed_in? %>
+            <li><%= link_to "Profil", user_path(current_user.id) %></li>
             <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete %></li>
         <% else %>
             <li><%= link_to "Connexion", new_user_session_path %></li>

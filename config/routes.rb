@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :profile
-  resources :users
-  devise_for :users
+  resources :categories
+    devise_for :users
+    resources :users
   root "products#index"
   resources :products do
         resources :comments

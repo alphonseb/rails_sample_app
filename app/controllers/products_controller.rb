@@ -3,7 +3,12 @@ class ProductsController < ApplicationController
      before_action :authenticate_user!
 
     def index
+        @users = User.all.order(comments_count: :desc)
         @products = Product.page(params[:page]).per(10).order(:title)
+        if params[:category_id]
+            @products = @products.in_category(params[:category_id])
+        end
+        @categories = Category.all
     end
 
     def show
